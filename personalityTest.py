@@ -15,7 +15,7 @@ class Page():
     def score(self,boolean):
         global weightScoring
         if boolean == True:
-            weightScoring = [a+b for a,b in zip(weightScoring,value)]
+            weightScoring = [a+b for a,b in zip(weightScoring,self.value)]
             print(weightScoring)
         
 
