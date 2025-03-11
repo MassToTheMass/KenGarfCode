@@ -1,7 +1,42 @@
-#Imports tkinter to display an interactable screen
-import tkinter as tk
+import ollama  # Use ollama for loading and inference
+import tkinter as tk  #used for the UI
+from accelerate import Accelerator  #used to manage GPU and CPU usage
 
-#The Page class creates a seperate page for each question.
+
+class Ai:
+    def __init__(self):
+        # Model Configuration
+        self.model_name = "phi"  # phi is the ai we are using
+        self.model = ollama.chat(model=self.model_name)  # Use ollama to load the model
+        self.accelerator = Accelerator()  # Initialize Accelerator, helps with GPU usage on my computer
+
+    def generate_career_recommendation(self, test_results):
+        prompt = f"""
+        You are an expert career advisor. Based on the following personality traits and interests, recommend the best career paths.
+        
+        Personality and Interests: {test_results}
+
+        Provide a numbered list of 5 career suggestions. Each suggestion should include:
+        - The job title
+        - A short explanation (1-2 sentences) on why it fits the person, mean salary for the career, and required degree.
+        - Do not include any puzzles, extra content, or logic games. Just the career suggestions.
+        """
+        #format the response correctly and actually call upon locally run ai. 
+        response = ollama.chat(model=self.model_name, messages=[{"role": "user", "content": prompt}])
+
+        
+        
+        # Extract only the career suggestions part (before the puzzle)
+        if 'message' in response and hasattr(response['message'], 'content'):
+            career_suggestions = response['message'].content.split("\n\n\n")[0]  # Split at extra content and get the career suggestions part
+            return career_suggestions
+        else:
+            return "Error: Could not find the content in the response."
+
+# Example usage
+career_ai = Ai()
+print(career_ai.generate_career_recommendation("I love computers and i am fairly introverted"))
+
 class Page():
     def __init__(self, key, value):
         #Lets the object know that key and value will be referenced in other methods
