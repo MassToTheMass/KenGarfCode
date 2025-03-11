@@ -10,15 +10,15 @@ class Page():
         window.geometry("800x500")
 
         tk.Label(window,text = self.key).grid(row=0, column=0, pady= 10)
-        tk.Button(window, text= "Yes", command=lambda: self.score(True)).grid(row=1, column=0,pady=10)
-        tk.Button(window, text= "No", command=lambda: self.score(False)).grid(row=1, column=1,pady=10)
+        tk.Button(window, text= "Yes", command=lambda: (self.score(True),skillsList[1].show_window(),window.destroy())).grid(row=1, column=0,pady=10)
+        tk.Button(window, text= "No", command=lambda: (self.score(False),skillsList[1].show_window(),window.destroy())).grid(row=1, column=1,pady=10)
     def score(self,boolean):
         global weightScoring
         if boolean == True:
             weightScoring = [a+b for a,b in zip(weightScoring,self.value)]
             print(weightScoring)
         
-
+        
 """
 for key, value in skills.items():
         tk.Checkbutton(test_window,text=key, variable = openPerson).grid(row=skillsLocation.index(key), column=0, pady=10)
