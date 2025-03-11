@@ -52,7 +52,7 @@ def show_final_window():
     tk.Button(window, text="Exit", command=window.destroy).grid(row=1, column=0, pady= 10)
 
 #Defines a dictionary that contains the question and respective points earned in the 5 OCEAN catagories, in order they are Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism.        
-skills = {"Are you good at COMMUNICATING" : (2,3,5,5,1), "Do you work well in a TEAM?" : (3,2,5,5,1), "Are you good at PROBLEM-SOLVING?" : (5,4,0,0,1)}
+skills = {"Are you good at COMMUNICATING" : (5,4,5,4,2), "Do you work well in a TEAM?" : (4,5,4,5,2), "Are you good at PROBLEM-SOLVING?" : (5,5,3,3,2), "Are you good at TIME MANAGEMENT": (3,5,2,3,2)}
 #Sets up a list that will contain all the Pages for each question
 skillsList = []
 
