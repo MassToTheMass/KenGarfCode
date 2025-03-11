@@ -1,14 +1,15 @@
 import tkinter as tk
 
 class Page():
-    def __init__(self):
-        pass
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
     def show_window(self):
         window = tk.Toplevel(root)
-        window.title(key)
+        window.title(self.key)
         window.geometry("800x500")
 
-        tk.Label(window,text = key).grid(row=0, column=0, pady= 10)
+        tk.Label(window,text = self.key).grid(row=0, column=0, pady= 10)
         tk.Button(window, text= "Yes", command=lambda: self.score(True)).grid(row=1, column=0,pady=10)
         tk.Button(window, text= "No", command=lambda: self.score(False)).grid(row=1, column=1,pady=10)
     def score(self,boolean):
@@ -28,8 +29,8 @@ for key,value in skills.items():
 skillsLocation = list(skills.keys())
 skillsList = []
 
-for skill in skills:
-    skill = Page()
+for key,value in skills.items():
+    skill = Page(key,value)
     skillsList.append(skill)
 
 print(skillsList)
