@@ -9,16 +9,32 @@ class Page():
         window.title(self.key)
         window.geometry("800x500")
 
-        tk.Label(window,text = self.key).grid(row=0, column=0, pady= 10)
-        tk.Button(window, text= "Yes", command=lambda: (self.score(True),skillsList[1].show_window(),window.destroy())).grid(row=1, column=0,pady=10)
-        tk.Button(window, text= "No", command=lambda: (self.score(False),skillsList[1].show_window(),window.destroy())).grid(row=1, column=1,pady=10)
+        if skillsList.index(self) == len(skillsList) -1:
+            print("i run")
+            tk.Label(window,text = self.key).grid(row=0, column=0, pady= 10)
+            tk.Button(window, text= "Yes", command=lambda: (self.score(True),show_final_window(),window.destroy())).grid(row=1, column=0,pady=10)
+            tk.Button(window, text= "No", command=lambda: (self.score(False),show_final_window(),window.destroy())).grid(row=1, column=1,pady=10)
+        else:
+            print(skillsList[skillsList.index(self)])
+            tk.Label(window,text = self.key).grid(row=0, column=0, pady= 10)
+            tk.Button(window, text= "Yes", command=lambda: (self.score(True),skillsList[skillsList.index(self) + 1].show_window(),window.destroy())).grid(row=1, column=0,pady=10)
+            tk.Button(window, text= "No", command=lambda: (self.score(False),skillsList[skillsList.index(self) + 1].show_window(),window.destroy())).grid(row=1, column=1,pady=10)
     def score(self,boolean):
         global weightScoring
         if boolean == True:
             weightScoring = [a+b for a,b in zip(weightScoring,self.value)]
             print(weightScoring)
         
-        
+    
+
+
+def show_final_window():
+    window = tk.Toplevel(root)
+    window.title("Your score")
+    window.geometry("800x500")
+    tk.Label(window, text=weightScoring).grid(row=0, column=0, pady= 10)
+
+
 """
 for key, value in skills.items():
         tk.Checkbutton(test_window,text=key, variable = openPerson).grid(row=skillsLocation.index(key), column=0, pady=10)
