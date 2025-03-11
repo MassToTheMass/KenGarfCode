@@ -12,14 +12,16 @@ class Page():
         tk.Button(window, text= "Yes", command=lambda: self.score(True)).grid(row=1, column=0,pady=10)
         tk.Button(window, text= "No", command=lambda: self.score(False)).grid(row=1, column=1,pady=10)
     def score(self,boolean):
+        global weightScoring
         if boolean == True:
-            print("YES")
-        else:
-            print("NO")
+            weightScoring = [a+b for a,b in zip(weightScoring,value)]
+            print(weightScoring)
+        
 
-#for key, value in skills.items():
-#        tk.Checkbutton(test_window,text=key, variable = openPerson).grid(row=skillsLocation.index(key), column=0, pady=10)
-
+"""
+for key, value in skills.items():
+        tk.Checkbutton(test_window,text=key, variable = openPerson).grid(row=skillsLocation.index(key), column=0, pady=10)
+"""
 skills = {"Are you an open person?" : [1,0,0,2,0], "Do you like people?" : [0,1,0,1,1], "Do you enjoy labor?" : [0,0,3,0,0]}
 for key,value in skills.items():
     skillsButtonate = {}
@@ -34,14 +36,14 @@ print(skillsList)
 
 weightScoring = [0,0,0,0,0]
 
-#def show_test_window():
-    #global test_window
-    #test_window = tk.Toplevel(root)
-    #test_window.title("Personality Test")
-    #test_window.geometry("800x500")
+"""def show_test_window():
+    global test_window
+    test_window = tk.Toplevel(root)
+    test_window.title("Personality Test")
+    test_window.geometry("800x500")
 
-    #tk.Label(test_window, text="Personality Test").grid(row=0, column=0, pady= 10)
-    
+    tk.Label(test_window, text="Personality Test").grid(row=0, column=0, pady= 10)
+    """
 
 
 if __name__ == "__main__":
